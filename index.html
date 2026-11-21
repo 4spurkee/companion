@@ -5,260 +5,541 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEXUS — Beyond Ordinary</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --red: #ff2020;
+  --dark-red: #a00000;
+  --bg: #090505;
+  --card: #170909;
+  --text: #ffffff;
+  --muted: #a49a9a;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: #080812;
-  color: yellow;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Space Grotesk', sans-serif;
   overflow-x: hidden;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* NAVIGATION */
+
 nav {
+  height: 85px;
+  padding: 0 9%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 9%;
-  position: relative;
-  z-index: 2;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #090505eF;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #351010;
 }
 
 .logo {
-  font-size: 25px;
+  color: var(--red);
+  font-size: 27px;
   font-weight: 700;
-  color: #a78bfa;
   letter-spacing: 4px;
 }
 
-nav a {
+.nav-links {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+.nav-links a {
   color: #aaa;
-  text-decoration: none;
-  margin-left: 30px;
   transition: .3s;
 }
 
-nav a:hover { color: #a78bfa; }
+.nav-links a:hover {
+  color: var(--red);
+}
+
+.nav-button {
+  padding: 11px 20px;
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  color: white !important;
+}
+
+/* HERO */
 
 .hero {
-  min-height: 85vh;
+  min-height: 760px;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px;
   position: relative;
+  overflow: hidden;
 }
 
 .glow {
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: #713cff;
+  width: 450px;
+  height: 450px;
+  background: #ff0000;
   filter: blur(180px);
-  opacity: .3;
+  opacity: .18;
   z-index: -1;
+  animation: pulse 4s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: .12; transform: scale(.8); }
+  to { opacity: .3; transform: scale(1.2); }
 }
 
 .tag {
-  color: #b7a0ff;
-  border: 1px solid #6744a8;
-  padding: 9px 20px;
+  border: 1px solid #812020;
+  padding: 10px 22px;
   border-radius: 30px;
+  color: #ff6565;
   font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
+  letter-spacing: 3px;
+  margin-bottom: 35px;
 }
 
 h1 {
-  font-size: clamp(55px, 9vw, 110px);
-  line-height: 1;
-  letter-spacing: -5px;
+  font-size: clamp(65px, 11vw, 125px);
+  line-height: .95;
+  letter-spacing: -6px;
+  font-weight: 700;
 }
 
 h1 span {
-  background: linear-gradient(90deg, #9b75ff, #46d9ff);
-  -webkit-background-clip: text;
   color: transparent;
+  background: linear-gradient(90deg, #ff1515, #ff7777);
+  -webkit-background-clip: text;
 }
 
 .hero p {
-  max-width: 550px;
-  color: #999;
+  max-width: 560px;
+  color: var(--muted);
   line-height: 1.8;
-  margin: 28px 0;
+  margin: 30px 0;
+  font-size: 16px;
 }
 
-button {
-  padding: 16px 32px;
+.primary-button {
+  padding: 17px 32px;
+  background: linear-gradient(100deg, #b80000, #ff3030);
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #8055ff, #4c9eff);
+  border-radius: 7px;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
   transition: .3s;
 }
 
-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 30px #8055ff80;
+.primary-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px #ff202080;
 }
+
+.scroll-text {
+  position: absolute;
+  bottom: 30px;
+  color: #655555;
+  font-size: 11px;
+  letter-spacing: 4px;
+}
+
+/* STATS */
 
 .stats {
   display: flex;
   justify-content: center;
-  gap: 80px;
-  padding: 40px 20px;
-  border-top: 1px solid #252536;
-  border-bottom: 1px solid #252536;
+  gap: 110px;
+  padding: 55px 20px;
+  border-top: 1px solid #351010;
+  border-bottom: 1px solid #351010;
   flex-wrap: wrap;
+  background: #100707;
 }
 
 .stat h2 {
-  font-size: 35px;
-  color: #a78bfa;
+  color: var(--red);
+  font-size: 38px;
 }
 
 .stat p {
-  color: #777;
+  color: #8b7777;
   font-size: 13px;
 }
 
-.features {
-  padding: 100px 9%;
+/* FEATURES */
+
+section.features {
+  padding: 110px 9%;
   text-align: center;
 }
 
-.features h2 {
-  font-size: 42px;
+.section-label {
+  color: var(--red);
+  letter-spacing: 4px;
+  font-size: 12px;
   margin-bottom: 15px;
 }
 
-.features > p { color: #888; }
+.features h2,
+.about h2 {
+  font-size: clamp(35px, 5vw, 50px);
+}
+
+.section-description {
+  color: #887777;
+  margin-top: 15px;
+}
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+  margin-top: 55px;
 }
 
 .card {
-  padding: 35px;
-  background: #11111f;
-  border: 1px solid #29283f;
-  border-radius: 15px;
+  padding: 40px 30px;
+  background: var(--card);
+  border: 1px solid #421515;
+  border-radius: 13px;
   text-align: left;
-  transition: .3s;
+  transition: .35s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  border-color: #916aff;
+  transform: translateY(-10px);
+  border-color: var(--red);
+  box-shadow: 0 15px 40px #ff000018;
 }
 
-.card .icon {
-  font-size: 35px;
-  margin-bottom: 20px;
+.icon {
+  font-size: 38px;
+  margin-bottom: 25px;
 }
 
-.card h3 { margin-bottom: 12px; }
-.card p { color: #888; line-height: 1.7; font-size: 14px; }
+.card h3 {
+  font-size: 21px;
+  margin-bottom: 13px;
+}
+
+.card p {
+  color: #998888;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ABOUT */
+
+.about {
+  padding: 100px 9%;
+  background: #140707;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.about-content {
+  flex: 1;
+  min-width: 260px;
+}
+
+.about-content p {
+  color: #a18b8b;
+  line-height: 1.9;
+  margin: 25px 0;
+}
+
+.about-box {
+  flex: 1;
+  min-width: 260px;
+  min-height: 280px;
+  border: 1px solid #651919;
+  border-radius: 15px;
+  background:
+    radial-gradient(circle, #9c1010 0%, #260909 45%, #100606 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+  box-shadow: inset 0 0 70px #ff000022;
+}
+
+/* CTA */
+
+.cta {
+  padding: 110px 20px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: clamp(35px, 6vw, 55px);
+}
+
+.cta p {
+  color: #998888;
+  margin: 20px 0 30px;
+}
+
+/* FOOTER */
 
 footer {
-  text-align: center;
-  padding: 35px;
-  color: #666;
-  border-top: 1px solid #252536;
+  padding: 45px 9%;
+  border-top: 1px solid #351010;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: #776666;
+  font-size: 13px;
 }
 
-@media(max-width:600px) {
-  nav { padding: 22px 5%; }
-  nav a { margin-left: 10px; font-size: 12px; }
-  .stats { gap: 35px; }
-  h1 { letter-spacing: -3px; }
+footer .logo {
+  font-size: 20px;
 }
+
+/* MOBILE */
+
+@media(max-width: 650px) {
+  nav {
+    padding: 0 5%;
+    height: 75px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  h1 {
+    letter-spacing: -3px;
+  }
+
+  .stats {
+    gap: 40px;
+  }
+
+  section.features {
+    padding: 80px 6%;
+  }
+
+  .about {
+    padding: 75px 6%;
+  }
+}
+
 </style>
 </head>
+
 <body>
 
+<!-- NAVIGATION -->
+
 <nav>
-  <div class="logo">NEXUS.</div>
-  <div>
+  <a href="#home" class="logo">NEXUS.</a>
+
+  <div class="nav-links">
     <a href="#home">Home</a>
     <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-button">Get Started ↗</a>
   </div>
 </nav>
 
+<!-- HERO -->
+
 <section class="hero" id="home">
+
   <div class="glow"></div>
-  <div class="tag">✦ THE FUTURE STARTS HERE</div>
-  <h1>THINK<br><span>BEYOND.</span></h1>
+
+  <div class="tag">✦ WELCOME TO THE DARK SIDE</div>
+
+  <h1>
+    THINK<br>
+    <span>BEYOND.</span>
+  </h1>
+
   <p>
-    Enter a new digital dimension. Discover possibilities,
-    explore creativity, and experience the extraordinary.
+    Forget ordinary. Enter a new digital dimension
+    where creativity meets technology and possibilities
+    have no limits.
   </p>
-  <button onclick="explore()">Explore the universe ↗</button>
+
+  <button class="primary-button"
+    onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+    Explore the universe ↗
+  </button>
+
+  <div class="scroll-text">SCROLL TO DISCOVER ↓</div>
+
 </section>
 
+<!-- STATISTICS -->
+
 <section class="stats">
+
   <div class="stat">
     <h2>99%</h2>
     <p>Pure creativity</p>
   </div>
+
   <div class="stat">
     <h2>24/7</h2>
     <p>Always exploring</p>
   </div>
+
   <div class="stat">
     <h2>∞</h2>
     <p>Possibilities</p>
   </div>
+
 </section>
+
+<!-- FEATURES -->
 
 <section class="features" id="features">
+
+  <div class="section-label">WHAT WE OFFER</div>
+
   <h2>Discover more.</h2>
-  <p>Everything you need to think differently.</p>
+
+  <p class="section-description">
+    Everything you need to think differently.
+  </p>
 
   <div class="cards">
+
     <div class="card">
       <div class="icon">⚡</div>
-      <h3>Fast thinking</h3>
-      <p>Ideas move at the speed of light. Nothing holds you back.</p>
+      <h3>Fast Thinking</h3>
+      <p>
+        Ideas move at the speed of light.
+        Nothing holds you back from achieving more.
+      </p>
     </div>
 
     <div class="card">
-      <div class="icon">🌌</div>
-      <h3>New worlds</h3>
-      <p>Explore new perspectives and discover the unknown.</p>
+      <div class="icon">🔥</div>
+      <h3>New Worlds</h3>
+      <p>
+        Explore new perspectives and discover
+        places beyond your imagination.
+      </p>
     </div>
 
     <div class="card">
-      <div class="icon">✧</div>
-      <h3>Creative freedom</h3>
-      <p>Your imagination is the only limit. Make something amazing.</p>
+      <div class="icon">✦</div>
+      <h3>Creative Freedom</h3>
+      <p>
+        Your imagination is the only limit.
+        Create something extraordinary.
+      </p>
     </div>
+
   </div>
+
 </section>
 
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+  <div class="about-content">
+
+    <div class="section-label">OUR VISION</div>
+
+    <h2>Not made to fit in.</h2>
+
+    <p>
+      NEXUS is built around one simple idea:
+      ordinary is never enough. We believe in
+      bold ideas, creative thinking, and pushing
+      beyond the limits of what's possible.
+    </p>
+
+    <button class="primary-button"
+      onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Join the movement ↗
+    </button>
+
+  </div>
+
+  <div class="about-box">
+    🔴
+  </div>
+
+</section>
+
+<!-- CALL TO ACTION -->
+
+<section class="cta" id="contact">
+
+  <div class="section-label">YOUR NEXT CHAPTER</div>
+
+  <h2>Ready to go beyond?</h2>
+
+  <p>
+    The future isn't waiting. It's yours to create.
+  </p>
+
+  <button class="primary-button" onclick="welcome()">
+    Let's begin ↗
+  </button>
+
+</section>
+
+<!-- FOOTER -->
+
 <footer>
-  © 2026 NEXUS. Made for the future.
+
+  <div class="logo">NEXUS.</div>
+
+  <div>© 2026 NEXUS. All rights reserved.</div>
+
+  <div>Designed for the extraordinary.</div>
+
 </footer>
 
 <script>
-function explore() {
-  document.getElementById('features').scrollIntoView({
-    behavior: 'smooth'
-  });
+
+function welcome() {
+  alert("Welcome to NEXUS. The future starts now! 🔴");
 }
+
 </script>
 
 </body>

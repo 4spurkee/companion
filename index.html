@@ -4,31 +4,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXUS — Beyond Ordinary</title>
+<title>CRIMSON — No Limits</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 :root {
-  --red: #ff2020;
-  --dark-red: #a00000;
-  --bg: #090505;
-  --card: #170909;
-  --text: #ffffff;
-  --muted: #a49a9a;
+  --red: #ff2525;
+  --black: #090909;
+  --white: #f5f3f0;
+  --gray: #777;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
 
@@ -37,509 +36,676 @@ a {
   text-decoration: none;
 }
 
-/* NAVIGATION */
+.cursor-glow {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  background: #ff0000;
+  filter: blur(140px);
+  opacity: .12;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+}
 
-nav {
-  height: 85px;
-  padding: 0 9%;
+header {
+  height: 90px;
+  padding: 0 7%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: #090505eF;
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid #351010;
+  border-bottom: 1px solid #222;
+  position: relative;
+  z-index: 5;
 }
 
 .logo {
-  color: var(--red);
-  font-size: 27px;
-  font-weight: 700;
-  letter-spacing: 4px;
+  font-family: Anton, sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
 }
 
-.nav-links {
+.logo span { color: var(--red); }
+
+nav {
   display: flex;
-  gap: 35px;
   align-items: center;
+  gap: 35px;
 }
 
-.nav-links a {
+nav a {
+  font-size: 13px;
   color: #aaa;
   transition: .3s;
 }
 
-.nav-links a:hover {
-  color: var(--red);
-}
+nav a:hover { color: var(--red); }
 
-.nav-button {
-  padding: 11px 20px;
-  border: 1px solid var(--red);
-  border-radius: 6px;
-  color: white !important;
+.menu-button {
+  display: none;
+  background: none;
+  color: white;
+  border: 0;
+  font-size: 26px;
 }
-
-/* HERO */
 
 .hero {
   min-height: 760px;
-  height: 90vh;
+  height: calc(100vh - 90px);
+  max-height: 950px;
+  padding: 80px 7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px 20px;
   position: relative;
   overflow: hidden;
 }
 
-.glow {
+.hero::before {
+  content: "01";
   position: absolute;
-  width: 450px;
-  height: 450px;
-  background: #ff0000;
-  filter: blur(180px);
-  opacity: .18;
-  z-index: -1;
-  animation: pulse 4s infinite alternate;
+  right: 5%;
+  top: 10%;
+  font-family: Anton;
+  font-size: 400px;
+  color: #171010;
+  z-index: 0;
 }
 
-@keyframes pulse {
-  from { opacity: .12; transform: scale(.8); }
-  to { opacity: .3; transform: scale(1.2); }
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
-.tag {
-  border: 1px solid #812020;
-  padding: 10px 22px;
-  border-radius: 30px;
-  color: #ff6565;
-  font-size: 12px;
-  letter-spacing: 3px;
+.eyebrow {
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: 5px;
   margin-bottom: 35px;
 }
 
-h1 {
-  font-size: clamp(65px, 11vw, 125px);
-  line-height: .95;
-  letter-spacing: -6px;
-  font-weight: 700;
+.hero h1 {
+  font-family: Anton, sans-serif;
+  font-size: clamp(90px, 16vw, 200px);
+  line-height: .8;
+  letter-spacing: -4px;
 }
 
-h1 span {
-  color: transparent;
-  background: linear-gradient(90deg, #ff1515, #ff7777);
-  -webkit-background-clip: text;
+.hero h1 span {
+  color: var(--red);
+  display: block;
+  text-shadow: 0 0 45px #ff252533;
 }
 
-.hero p {
-  max-width: 560px;
-  color: var(--muted);
+.hero-bottom {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  gap: 30px;
+}
+
+.hero-bottom p {
+  color: #888;
+  max-width: 330px;
   line-height: 1.8;
-  margin: 30px 0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
-.primary-button {
-  padding: 17px 32px;
-  background: linear-gradient(100deg, #b80000, #ff3030);
-  border: none;
-  border-radius: 7px;
+.button {
+  display: inline-block;
+  padding: 17px 27px;
+  background: var(--red);
   color: white;
   font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.primary-button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 35px #ff202080;
-}
-
-.scroll-text {
-  position: absolute;
-  bottom: 30px;
-  color: #655555;
-  font-size: 11px;
-  letter-spacing: 4px;
-}
-
-/* STATS */
-
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 110px;
-  padding: 55px 20px;
-  border-top: 1px solid #351010;
-  border-bottom: 1px solid #351010;
-  flex-wrap: wrap;
-  background: #100707;
-}
-
-.stat h2 {
-  color: var(--red);
-  font-size: 38px;
-}
-
-.stat p {
-  color: #8b7777;
-  font-size: 13px;
-}
-
-/* FEATURES */
-
-section.features {
-  padding: 110px 9%;
-  text-align: center;
-}
-
-.section-label {
-  color: var(--red);
-  letter-spacing: 4px;
   font-size: 12px;
-  margin-bottom: 15px;
+  letter-spacing: 1px;
+  border: 1px solid var(--red);
+  transition: .3s;
+  cursor: pointer;
 }
 
-.features h2,
-.about h2 {
-  font-size: clamp(35px, 5vw, 50px);
+.button:hover {
+  background: transparent;
+  box-shadow: 0 0 30px #ff252533;
+  transform: translateY(-3px);
 }
 
-.section-description {
-  color: #887777;
-  margin-top: 15px;
+.vertical-text {
+  position: absolute;
+  right: 7%;
+  bottom: 80px;
+  writing-mode: vertical-rl;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 4px;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 22px;
-  margin-top: 55px;
+/* MARQUEE */
+
+.marquee {
+  background: var(--red);
+  padding: 18px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: rotate(-1deg) scale(1.02);
 }
 
-.card {
-  padding: 40px 30px;
-  background: var(--card);
-  border: 1px solid #421515;
-  border-radius: 13px;
-  text-align: left;
-  transition: .35s;
+.marquee-content {
+  display: inline-block;
+  animation: move 25s linear infinite;
+  font-family: Anton;
+  font-size: 25px;
+  letter-spacing: 3px;
+  color: black;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  border-color: var(--red);
-  box-shadow: 0 15px 40px #ff000018;
-}
-
-.icon {
-  font-size: 38px;
-  margin-bottom: 25px;
-}
-
-.card h3 {
-  font-size: 21px;
-  margin-bottom: 13px;
-}
-
-.card p {
-  color: #998888;
-  font-size: 14px;
-  line-height: 1.8;
+@keyframes move {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ABOUT */
 
 .about {
-  padding: 100px 9%;
-  background: #140707;
-  display: flex;
-  justify-content: space-between;
+  padding: 150px 7%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
   align-items: center;
-  gap: 60px;
-  flex-wrap: wrap;
 }
 
-.about-content {
-  flex: 1;
-  min-width: 260px;
-}
-
-.about-content p {
-  color: #a18b8b;
-  line-height: 1.9;
-  margin: 25px 0;
-}
-
-.about-box {
-  flex: 1;
-  min-width: 260px;
-  min-height: 280px;
-  border: 1px solid #651919;
-  border-radius: 15px;
+.about-image {
+  height: 470px;
   background:
-    radial-gradient(circle, #9c1010 0%, #260909 45%, #100606 100%);
+    linear-gradient(0deg, #0009, transparent),
+    radial-gradient(circle at 60% 40%, #d50000, #4b0000 40%, #100707 75%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 90px;
-  box-shadow: inset 0 0 70px #ff000022;
+  overflow: hidden;
+  border: 1px solid #451111;
+  position: relative;
 }
 
-/* CTA */
+.about-image span {
+  font-family: Anton;
+  font-size: 150px;
+  color: #ffffff18;
+  transform: rotate(-15deg);
+}
 
-.cta {
-  padding: 110px 20px;
+.about-image::after {
+  content: "C";
+  position: absolute;
+  font-family: Anton;
+  font-size: 280px;
+  color: #ff2525;
+  text-shadow: 0 0 70px #ff000088;
+}
+
+.about-copy .eyebrow { margin-bottom: 20px; }
+
+.about-copy h2 {
+  font-family: Anton;
+  font-size: clamp(45px, 6vw, 80px);
+  line-height: .95;
+}
+
+.about-copy h2 span { color: var(--red); }
+
+.about-copy p {
+  color: #888;
+  line-height: 2;
+  margin: 30px 0;
+  font-size: 14px;
+  max-width: 450px;
+}
+
+/* COLLECTION */
+
+.collection {
+  padding: 110px 7%;
+  background: #111;
+}
+
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 55px;
+  gap: 20px;
+}
+
+.section-top h2 {
+  font-family: Anton;
+  font-size: clamp(50px, 8vw, 90px);
+}
+
+.section-top h2 span { color: var(--red); }
+
+.section-top p {
+  color: #777;
+  font-size: 13px;
+  max-width: 200px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product {
+  background: #191919;
+  overflow: hidden;
+  border: 1px solid #292929;
+  transition: .3s;
+}
+
+.product:hover {
+  transform: translateY(-8px);
+  border-color: var(--red);
+}
+
+.product-art {
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Anton;
+  font-size: 100px;
+  color: #ffffff18;
+  position: relative;
+  overflow: hidden;
+}
+
+.art-one {
+  background: radial-gradient(circle, #700000, #160606 70%);
+}
+
+.art-two {
+  background: radial-gradient(circle, #3c3c3c, #090909 70%);
+}
+
+.art-three {
+  background: radial-gradient(circle, #a00000, #210505 70%);
+}
+
+.product-art span {
+  transition: .5s;
+}
+
+.product:hover .product-art span {
+  transform: scale(1.2) rotate(-10deg);
+  color: #ff2525;
+}
+
+.product-info {
+  padding: 25px;
+}
+
+.product-info small {
+  color: var(--red);
+  letter-spacing: 2px;
+}
+
+.product-info h3 {
+  font-size: 21px;
+  margin: 10px 0;
+}
+
+.product-info p {
+  color: #777;
+  font-size: 13px;
+}
+
+/* MANIFESTO */
+
+.manifesto {
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  padding: 100px 7%;
+  background:
+    radial-gradient(ellipse at center, #310707 0%, #090909 70%);
 }
 
-.cta h2 {
-  font-size: clamp(35px, 6vw, 55px);
+.manifesto h2 {
+  font-family: Anton;
+  font-size: clamp(55px, 10vw, 130px);
+  line-height: .95;
 }
 
-.cta p {
-  color: #998888;
-  margin: 20px 0 30px;
+.manifesto h2 span { color: var(--red); }
+
+.manifesto p {
+  color: #999;
+  margin-top: 30px;
+  letter-spacing: 3px;
+  font-size: 11px;
 }
 
 /* FOOTER */
 
 footer {
-  padding: 45px 9%;
-  border-top: 1px solid #351010;
+  padding: 60px 7% 30px;
+  border-top: 1px solid #292929;
+}
+
+.footer-top {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
-  color: #776666;
+  margin-bottom: 70px;
+}
+
+.footer-top h2 {
+  font-family: Anton;
+  font-size: 50px;
+}
+
+.footer-top h2 span { color: var(--red); }
+
+.footer-top p {
+  color: #777;
+  max-width: 300px;
+  line-height: 1.8;
   font-size: 13px;
 }
 
-footer .logo {
-  font-size: 20px;
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #292929;
+  padding-top: 25px;
+  color: #666;
+  font-size: 11px;
 }
 
-/* MOBILE */
+/* REVEAL ANIMATION */
 
-@media(max-width: 650px) {
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media(max-width: 800px) {
   nav {
-    padding: 0 5%;
-    height: 75px;
-  }
-
-  .nav-links {
-    gap: 14px;
-  }
-
-  .nav-links a {
-    font-size: 12px;
-  }
-
-  .nav-button {
     display: none;
   }
 
-  h1 {
-    letter-spacing: -3px;
+  .menu-button {
+    display: block;
   }
 
-  .stats {
-    gap: 40px;
+  header {
+    height: 75px;
   }
 
-  section.features {
-    padding: 80px 6%;
+  .hero {
+    min-height: 680px;
+    height: 85vh;
+  }
+
+  .hero::before {
+    font-size: 250px;
+  }
+
+  .hero-bottom {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .about {
-    padding: 75px 6%;
+    grid-template-columns: 1fr;
+    padding: 90px 7%;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .product-art {
+    height: 300px;
+  }
+
+  .vertical-text {
+    display: none;
   }
 }
 
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: #151010;
+  padding: 20px 7%;
+  gap: 20px;
+  position: relative;
+  z-index: 4;
+}
+
+.mobile-nav.open { display: flex; }
+
+.mobile-nav a { color: #ddd; }
+
+@media(max-width: 500px) {
+  .hero h1 { font-size: 85px; }
+  .hero::before { font-size: 180px; }
+  .section-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<div class="cursor-glow" id="glow"></div>
 
-<nav>
-  <a href="#home" class="logo">NEXUS.</a>
+<header>
+  <a class="logo" href="#">CRI<span>M</span>SON.</a>
 
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#features">Features</a>
-    <a href="#about">About</a>
-    <a href="#contact" class="nav-button">Get Started ↗</a>
-  </div>
-</nav>
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#about">STORY</a>
+    <a href="#collection">COLLECTION</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
 
-<!-- HERO -->
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home" onclick="toggleMenu()">HOME</a>
+  <a href="#about" onclick="toggleMenu()">STORY</a>
+  <a href="#collection" onclick="toggleMenu()">COLLECTION</a>
+  <a href="#contact" onclick="toggleMenu()">CONTACT</a>
+</div>
+
+<main>
 
 <section class="hero" id="home">
+  <div class="hero-content reveal">
+    <div class="eyebrow">INDEPENDENT BY NATURE — EST. 2026</div>
 
-  <div class="glow"></div>
+    <h1>
+      NO<br>
+      <span>LIMITS.</span>
+    </h1>
 
-  <div class="tag">✦ WELCOME TO THE DARK SIDE</div>
+    <div class="hero-bottom">
+      <p>
+        We don't follow the rules. We create our own.
+        A new generation of creativity, design and
+        fearless expression.
+      </p>
 
-  <h1>
-    THINK<br>
-    <span>BEYOND.</span>
-  </h1>
+      <a href="#collection" class="button">DISCOVER MORE ↗</a>
+    </div>
+  </div>
 
-  <p>
-    Forget ordinary. Enter a new digital dimension
-    where creativity meets technology and possibilities
-    have no limits.
-  </p>
-
-  <button class="primary-button"
-    onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-    Explore the universe ↗
-  </button>
-
-  <div class="scroll-text">SCROLL TO DISCOVER ↓</div>
-
+  <div class="vertical-text">BUILT DIFFERENT — 001</div>
 </section>
 
-<!-- STATISTICS -->
-
-<section class="stats">
-
-  <div class="stat">
-    <h2>99%</h2>
-    <p>Pure creativity</p>
+<div class="marquee">
+  <div class="marquee-content">
+    NO RULES ✳ NO LIMITS ✳ NO FEAR ✳ BE DIFFERENT ✳
+    NO RULES ✳ NO LIMITS ✳ NO FEAR ✳ BE DIFFERENT ✳
   </div>
-
-  <div class="stat">
-    <h2>24/7</h2>
-    <p>Always exploring</p>
-  </div>
-
-  <div class="stat">
-    <h2>∞</h2>
-    <p>Possibilities</p>
-  </div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="features" id="features">
-
-  <div class="section-label">WHAT WE OFFER</div>
-
-  <h2>Discover more.</h2>
-
-  <p class="section-description">
-    Everything you need to think differently.
-  </p>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="icon">⚡</div>
-      <h3>Fast Thinking</h3>
-      <p>
-        Ideas move at the speed of light.
-        Nothing holds you back from achieving more.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🔥</div>
-      <h3>New Worlds</h3>
-      <p>
-        Explore new perspectives and discover
-        places beyond your imagination.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">✦</div>
-      <h3>Creative Freedom</h3>
-      <p>
-        Your imagination is the only limit.
-        Create something extraordinary.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ABOUT -->
+</div>
 
 <section class="about" id="about">
+  <div class="about-image reveal">
+    <span>01</span>
+  </div>
 
-  <div class="about-content">
+  <div class="about-copy reveal">
+    <div class="eyebrow">01 / THE STORY</div>
 
-    <div class="section-label">OUR VISION</div>
-
-    <h2>Not made to fit in.</h2>
+    <h2>MADE TO<br><span>STAND OUT.</span></h2>
 
     <p>
-      NEXUS is built around one simple idea:
-      ordinary is never enough. We believe in
-      bold ideas, creative thinking, and pushing
-      beyond the limits of what's possible.
+      CRIMSON isn't just a name. It's an attitude.
+      A creative universe for people who refuse to
+      blend in. We believe the best things happen
+      outside your comfort zone.
     </p>
 
-    <button class="primary-button"
-      onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      Join the movement ↗
-    </button>
-
+    <a href="#collection" class="button">EXPLORE OUR WORLD ↗</a>
   </div>
-
-  <div class="about-box">
-    🔴
-  </div>
-
 </section>
 
-<!-- CALL TO ACTION -->
+<section class="collection" id="collection">
+  <div class="section-top reveal">
+    <div>
+      <div class="eyebrow">02 / SELECTED WORKS</div>
+      <h2>THE <span>COLLECTION.</span></h2>
+    </div>
 
-<section class="cta" id="contact">
+    <p>
+      Three directions. One mindset.
+      Nothing ordinary.
+    </p>
+  </div>
 
-  <div class="section-label">YOUR NEXT CHAPTER</div>
+  <div class="products">
 
-  <h2>Ready to go beyond?</h2>
+    <article class="product reveal">
+      <div class="product-art art-one">
+        <span>01</span>
+      </div>
+      <div class="product-info">
+        <small>01 — DESIGN</small>
+        <h3>Red Dimension</h3>
+        <p>Bold visuals. Powerful expression.</p>
+      </div>
+    </article>
 
-  <p>
-    The future isn't waiting. It's yours to create.
-  </p>
+    <article class="product reveal">
+      <div class="product-art art-two">
+        <span>02</span>
+      </div>
+      <div class="product-info">
+        <small>02 — CULTURE</small>
+        <h3>Dark Identity</h3>
+        <p>Minimalism with a rebellious edge.</p>
+      </div>
+    </article>
 
-  <button class="primary-button" onclick="welcome()">
-    Let's begin ↗
-  </button>
+    <article class="product reveal">
+      <div class="product-art art-three">
+        <span>03</span>
+      </div>
+      <div class="product-info">
+        <small>03 — FUTURE</small>
+        <h3>After Hours</h3>
+        <p>Ideas that refuse to sleep.</p>
+      </div>
+    </article>
 
+  </div>
 </section>
 
-<!-- FOOTER -->
+<section class="manifesto reveal">
+  <div>
+    <div class="eyebrow">03 / OUR MANIFESTO</div>
 
-<footer>
+    <h2>
+      BE BOLD.<br>
+      BE <span>FEARLESS.</span><br>
+      BE DIFFERENT.
+    </h2>
 
-  <div class="logo">NEXUS.</div>
+    <p>THE WORLD DOESN'T NEED ANOTHER COPY.</p>
+  </div>
+</section>
 
-  <div>© 2026 NEXUS. All rights reserved.</div>
+</main>
 
-  <div>Designed for the extraordinary.</div>
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="eyebrow">YOUR MOVE.</div>
+      <h2>STAY <span>UNIQUE.</span></h2>
+    </div>
 
+    <p>
+      Thanks for visiting CRIMSON.
+      Keep creating. Keep questioning.
+      Never stop being different.
+    </p>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 CRIMSON STUDIO</span>
+    <span>DESIGNED WITHOUT LIMITS.</span>
+    <a href="#home">BACK TO TOP ↑</a>
+  </div>
 </footer>
 
 <script>
-
-function welcome() {
-  alert("Welcome to NEXUS. The future starts now! 🔴");
+// Mobile navigation
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
 }
 
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
+
+// Mouse glow
+const glow = document.getElementById('glow');
+
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
 </script>
 
 </body>
